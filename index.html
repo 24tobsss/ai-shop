@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Innovations - KI Produkte</title>
+    <style>
+        :root {
+            --neon-cyan: #0ff;
+            --neon-pink: #f0f;
+            --space-black: #0a0a0f;
+        }
+
+        body {
+            background: var(--space-black);
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .cyber-border {
+            border: 3px solid var(--neon-cyan);
+            box-shadow: 0 0 15px var(--neon-cyan);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        .cyber-title {
+            font-size: 4rem;
+            text-transform: uppercase;
+            text-shadow: 0 0 20px var(--neon-pink);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px var(--neon-pink); }
+            to { text-shadow: 0 0 30px var(--neon-pink), 0 0 10px var(--neon-cyan); }
+        }
+
+        /* Vollständige CSS aus vorherigen Antworten hier einfügen */
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="cyber-title">AI Innovations</h1>
+            <p>Next-Gen KI Lösungen</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Alle vorherigen Sektionen hier einfügen -->
+        
+        <!-- Zahlungssektion -->
+        <div class="payment-methods">
+            <div id="paypal-button-container"></div>
+            <button class="stripe-btn" onclick="handleStripePayment()">
+                Mit Karte zahlen (Stripe)
+            </button>
+        </div>
+    </main>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        // Stripe Integration
+        const stripe = Stripe('pk_test_51RPUggEHv9IntX7NAfm8CBzIehl86QYeXMX16KcNVvEHljV9WkBVsM6hItWHZn5SdXLTmMNbD71LZOYC5jcirCl600lyrDZzmN');
+
+        async function handleStripePayment() {
+            const response = await fetch('https://your-server.vercel.app/create-checkout-session', {
+                method: 'POST'
+            });
+            const { sessionId } = await response.json();
+            await stripe.redirectToCheckout({ sessionId });
+        }
+
+        // PayPal Integration
+        paypal.Buttons({
+            createOrder: (data, actions) => {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '99.00'
+                        }
+                    }]
+                });
+            },
+            onApprove: (data, actions) => {
+                return actions.order.capture().then(details => {
+                    alert('Zahlung erfolgreich!');
+                });
+            }
+        }).render('#paypal-button-container');
+    </script>
+    <script src="https://www.paypal.com/sdk/js?client-id=DEIN_PAYPAL_CLIENT_ID"></script>
+</body>
+</html>

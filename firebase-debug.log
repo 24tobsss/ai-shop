@@ -1,0 +1,130 @@
+[debug] [2025-05-17T09:41:19.389Z] ----------------------------------------------------------------------
+[debug] [2025-05-17T09:41:19.393Z] Command:       /home/anonym/.nvm/versions/node/v22.14.0/bin/node /home/anonym/.nvm/versions/node/v22.14.0/bin/firebase login
+[debug] [2025-05-17T09:41:19.393Z] CLI Version:   14.4.0
+[debug] [2025-05-17T09:41:19.394Z] Platform:      linux
+[debug] [2025-05-17T09:41:19.394Z] Node Version:  v22.14.0
+[debug] [2025-05-17T09:41:19.394Z] Time:          Sat May 17 2025 11:41:19 GMT+0200 (Central European Summer Time)
+[debug] [2025-05-17T09:41:19.394Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-05-17T09:41:19.398Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[info] i  Firebase optionally collects CLI and Emulator Suite usage and error reporting information to help improve our products. Data is collected in accordance with Google's privacy policy (https://policies.google.com/privacy) and is not used to identify you.
+ 
+[info] i  To change your data collection preference at any time, run `firebase logout` and log in again. 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://accounts.google.com/o/oauth2/auth?client_id=563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com&scope=email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloudplatformprojects.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffirebase%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform&response_type=code&state=199569198&redirect_uri=http%3A%2F%2Flocalhost%3A9005
+[info] 
+[info] Waiting for authentication...
+[debug] [2025-05-17T09:41:24.939Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2025-05-17T09:41:24.940Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2025-05-17T09:41:34.178Z] >>> [apiv2][query] POST https://accounts.google.com/o/oauth2/token [none]
+[debug] [2025-05-17T09:41:34.178Z] >>> [apiv2][body] POST https://accounts.google.com/o/oauth2/token [omitted]
+[debug] [2025-05-17T09:41:34.370Z] <<< [apiv2][status] POST https://accounts.google.com/o/oauth2/token 200
+[debug] [2025-05-17T09:41:34.370Z] <<< [apiv2][body] POST https://accounts.google.com/o/oauth2/token [omitted]
+[info] 
+[info] ✔  Success! Logged in as tobias.hustob@gmail.com 
+[debug] [2025-05-17T09:41:39.675Z] Error: Timed out.
+    at Timeout._onTimeout (/home/anonym/.nvm/versions/node/v22.14.0/lib/node_modules/firebase-tools/lib/utils.js:267:49)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2025-05-17T09:41:58.647Z] ----------------------------------------------------------------------
+[debug] [2025-05-17T09:41:58.651Z] Command:       /home/anonym/.nvm/versions/node/v22.14.0/bin/node /home/anonym/.nvm/versions/node/v22.14.0/bin/firebase login
+[debug] [2025-05-17T09:41:58.653Z] CLI Version:   14.4.0
+[debug] [2025-05-17T09:41:58.653Z] Platform:      linux
+[debug] [2025-05-17T09:41:58.653Z] Node Version:  v22.14.0
+[debug] [2025-05-17T09:41:58.654Z] Time:          Sat May 17 2025 11:41:58 GMT+0200 (Central European Summer Time)
+[debug] [2025-05-17T09:41:58.654Z] ----------------------------------------------------------------------
+[debug] 
+[info] Already logged in as tobias.hustob@gmail.com
+[debug] [2025-05-17T09:42:08.750Z] Error: Timed out.
+    at Timeout._onTimeout (/home/anonym/.nvm/versions/node/v22.14.0/lib/node_modules/firebase-tools/lib/utils.js:267:49)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2025-05-17T09:44:31.348Z] ----------------------------------------------------------------------
+[debug] [2025-05-17T09:44:31.355Z] Command:       /home/anonym/.nvm/versions/node/v22.14.0/bin/node /home/anonym/.nvm/versions/node/v22.14.0/bin/firebase init
+[debug] [2025-05-17T09:44:31.356Z] CLI Version:   14.4.0
+[debug] [2025-05-17T09:44:31.356Z] Platform:      linux
+[debug] [2025-05-17T09:44:31.356Z] Node Version:  v22.14.0
+[debug] [2025-05-17T09:44:31.357Z] Time:          Sat May 17 2025 11:44:31 GMT+0200 (Central European Summer Time)
+[debug] [2025-05-17T09:44:31.357Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-05-17T09:44:31.364Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-05-17T09:44:31.365Z] > authorizing via signed-in user (tobias.hustob@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /home/anonym/ai-shop
+
+[debug] [2025-05-17T09:44:43.684Z] Error: Timed out.
+    at Timeout._onTimeout (/home/anonym/.nvm/versions/node/v22.14.0/lib/node_modules/firebase-tools/lib/utils.js:267:49)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2025-05-17T09:44:56.088Z] ----------------------------------------------------------------------
+[debug] [2025-05-17T09:44:56.092Z] Command:       /home/anonym/.nvm/versions/node/v22.14.0/bin/node /home/anonym/.nvm/versions/node/v22.14.0/bin/firebase init
+[debug] [2025-05-17T09:44:56.093Z] CLI Version:   14.4.0
+[debug] [2025-05-17T09:44:56.093Z] Platform:      linux
+[debug] [2025-05-17T09:44:56.094Z] Node Version:  v22.14.0
+[debug] [2025-05-17T09:44:56.094Z] Time:          Sat May 17 2025 11:44:56 GMT+0200 (Central European Summer Time)
+[debug] [2025-05-17T09:44:56.094Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-05-17T09:44:56.101Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-05-17T09:44:56.102Z] > authorizing via signed-in user (tobias.hustob@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /home/anonym/ai-shop
+
+[debug] [2025-05-17T09:45:08.353Z] Error: Timed out.
+    at Timeout._onTimeout (/home/anonym/.nvm/versions/node/v22.14.0/lib/node_modules/firebase-tools/lib/utils.js:267:49)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2025-05-17T09:45:25.976Z] ----------------------------------------------------------------------
+[debug] [2025-05-17T09:45:25.981Z] Command:       /home/anonym/.nvm/versions/node/v22.14.0/bin/node /home/anonym/.nvm/versions/node/v22.14.0/bin/firebase login
+[debug] [2025-05-17T09:45:25.982Z] CLI Version:   14.4.0
+[debug] [2025-05-17T09:45:25.985Z] Platform:      linux
+[debug] [2025-05-17T09:45:25.986Z] Node Version:  v22.14.0
+[debug] [2025-05-17T09:45:25.987Z] Time:          Sat May 17 2025 11:45:25 GMT+0200 (Central European Summer Time)
+[debug] [2025-05-17T09:45:25.987Z] ----------------------------------------------------------------------
+[debug] 
+[info] Already logged in as tobias.hustob@gmail.com
+[debug] [2025-05-17T09:45:36.117Z] Error: Timed out.
+    at Timeout._onTimeout (/home/anonym/.nvm/versions/node/v22.14.0/lib/node_modules/firebase-tools/lib/utils.js:267:49)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2025-05-17T09:45:40.100Z] ----------------------------------------------------------------------
+[debug] [2025-05-17T09:45:40.104Z] Command:       /home/anonym/.nvm/versions/node/v22.14.0/bin/node /home/anonym/.nvm/versions/node/v22.14.0/bin/firebase login
+[debug] [2025-05-17T09:45:40.105Z] CLI Version:   14.4.0
+[debug] [2025-05-17T09:45:40.105Z] Platform:      linux
+[debug] [2025-05-17T09:45:40.105Z] Node Version:  v22.14.0
+[debug] [2025-05-17T09:45:40.106Z] Time:          Sat May 17 2025 11:45:40 GMT+0200 (Central European Summer Time)
+[debug] [2025-05-17T09:45:40.106Z] ----------------------------------------------------------------------
+[debug] 
+[info] Already logged in as tobias.hustob@gmail.com
+[debug] [2025-05-17T09:45:50.182Z] Error: Timed out.
+    at Timeout._onTimeout (/home/anonym/.nvm/versions/node/v22.14.0/lib/node_modules/firebase-tools/lib/utils.js:267:49)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[error] 
+[error] Error: An unexpected error has occurred.

@@ -3,293 +3,318 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXUS AI | Quantum Computing Store</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HUSTOB | AI Innovations</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <title>HUSTOB | Future Tech Solutions</title>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <style>
         :root {
-            --quantum-blue: #00f3ff;
+            --neon-cyan: #00f3ff;
+            --neon-pink: #ff00ff;
             --cyber-black: #0a0a15;
-            --hologram-pink: #ff00ff;
-            --neon-stroke: 0 0 15px var(--quantum-blue);
+            --hologram-effect: linear-gradient(45deg, 
+                var(--neon-cyan), 
+                var(--neon-pink));
         }
 
         body {
+            background: var(--cyber-black);
+            color: white;
+            font-family: 'Orbitron', sans-serif;
             margin: 0;
             overflow-x: hidden;
-            font-family: 'Orbitron', sans-serif;
-            color: white;
-            background: var(--cyber-black);
         }
 
-        #webgl-canvas {
-            position: fixed;
+        /* Cyber Navigation */
+        .cyber-nav {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            padding: 2rem;
+            background: rgba(0,0,0,0.9);
+            border-bottom: 3px solid var(--neon-cyan);
+            position: sticky;
             top: 0;
-            left: 0;
-            z-index: -1;
+            z-index: 1000;
         }
 
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 1rem;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background: var(--hologram-effect);
+            transition: 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Main Content */
         .cyber-header {
             text-align: center;
-            padding: 8rem 2rem 4rem;
+            padding: 8rem 2rem;
             background: radial-gradient(circle at 50% 100%, #00f3ff20 0%, transparent 60%);
         }
 
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 3rem;
             padding: 4rem;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
-        .quantum-card {
-            background: #00000060;
-            border: 1px solid #00f3ff50;
+        .cyber-card {
+            background: rgba(255,255,255,0.05);
+            border: 2px solid var(--neon-pink);
+            padding: 2rem;
             border-radius: 15px;
-            padding: 3rem 2rem;
-            backdrop-filter: blur(15px);
-            transition: 0.4s;
             position: relative;
-            text-align: center;
-            min-height: 300px;
+            transition: 0.4s;
+            overflow: hidden;
         }
 
-        .coming-soon-badge {
+        .cyber-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 40px var(--neon-pink);
+        }
+
+        .proto-badge {
             position: absolute;
-            top: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 4em;
-            filter: drop-shadow(0 0 20px var(--quantum-blue));
-            animation: float 3s ease-in-out infinite;
+            top: 1rem;
+            right: 1rem;
+            background: var(--neon-pink);
+            color: black;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-weight: bold;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translate(-50%, 0); }
-            50% { transform: translate(-50%, -15px); }
+        /* Support Section */
+        .support-section {
+            padding: 4rem;
+            background: rgba(0,0,0,0.7);
+            margin: 4rem 0;
         }
 
-        .cyber-auth {
-            position: fixed;
-            top: 2rem;
-            right: 2rem;
-            z-index: 1000;
+        .cyber-form {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border: 2px solid var(--neon-cyan);
+            border-radius: 15px;
         }
 
-        .cyber-button {
-            background: #00f3ff20;
-            border: 1px solid var(--quantum-blue);
-            color: white;
-            padding: 0.8rem 1.5rem;
-            cursor: pointer;
-            transition: 0.3s;
-            font-family: 'Orbitron';
-            letter-spacing: 2px;
-        }
-
-        .cyber-button:hover {
-            background: #00f3ff40;
-            box-shadow: var(--neon-stroke);
-        }
-
-        .hologram-effect {
+        .form-input {
             width: 100%;
-            height: 100px;
-            background: radial-gradient(circle at 50% 0%, #00f3ff30 0%, transparent 70%);
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            z-index: -1;
+            padding: 1rem;
+            margin: 1rem 0;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid var(--neon-cyan);
+            color: white;
+            font-family: 'Orbitron';
+        }
+
+        /* Animations */
+        @keyframes hologram-pulse {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.5; }
         }
 
         @media (max-width: 768px) {
-            .product-grid {
-                padding: 2rem;
+            .cyber-nav {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
             }
             
-            .cyber-header {
-                padding: 5rem 1rem 3rem;
+            .product-grid {
+                padding: 2rem;
             }
         }
     </style>
 </head>
 <body>
-    <canvas id="webgl-canvas"></canvas>
-
-    <div class="cyber-auth" id="authState"></div>
+    <nav class="cyber-nav">
+        <a href="#products" class="nav-link">🛸 Produkte</a>
+        <a href="#support" class="nav-link">🔧 Support</a>
+        <a href="#contact" class="nav-link">📡 Kontakt</a>
+        <div id="authState" style="display: flex; gap: 1rem"></div>
+    </nav>
 
     <header class="cyber-header">
-        <h1 style="font-size: 3em">🔮 HUSTOB</h1>
-        <p style="font-size: 1.2em">Die Zukunft der Künstlichen Intelligenz</p>
+        <h1>HUSTOB TECH</h1>
+        <p>Innovative Lösungen für die Zukunft</p>
+        <div class="search-bar">
+            <input type="text" class="form-input" placeholder="🔍 Suche nach Produkten...">
+        </div>
     </header>
 
-    <div class="product-grid">
-        <div class="quantum-card">
-            <div class="coming-soon-badge">❓</div>
-            <h2 style="margin: 2rem 0 1rem">COMING SOON</h2>
-            <div class="hologram-effect"></div>
-            <p style="color: var(--hologram-pink)">KI-Assistent PRO</p>
-            <p>Autonome Entscheidungsalgorithmen</p>
+    <section id="products" class="product-grid">
+        <!-- Barbot -->
+        <div class="cyber-card">
+            <div class="proto-badge">BETA</div>
+            <h2>BARBOT</h2>
+            <p>KI-gesteuerter Gartenassistent</p>
+            <img src="https://via.placeholder.com/400x300/00f3ff/000?text=AI+Gartenroboter" 
+                 alt="Barbot Preview"
+                 style="width:100%; margin:1rem 0">
+            <button class="form-input" onclick="showNotify('Barbot')">Benachrichtigen</button>
         </div>
 
-        <div class="quantum-card">
-            <div class="coming-soon-badge">❓</div>
-            <h2 style="margin: 2rem 0 1rem">COMING SOON</h2>
-            <div class="hologram-effect"></div>
-            <p style="color: var(--hologram-pink)">Neuronales Framework</p>
-            <p>Selbstoptimierende Systemarchitektur</p>
+        <!-- Neuro Planner -->
+        <div class="cyber-card">
+            <div class="proto-badge">COMING SOON</div>
+            <h2>NEURO PLANNER</h2>
+            <p>Adaptiver Tagesmanager</p>
+            <img src="https://via.placeholder.com/400x300/ff00ff/000?text=Neuro+Planner" 
+                 alt="Planner Preview"
+                 style="width:100%; margin:1rem 0">
+            <button class="form-input" onclick="showNotify('Neuro Planner')">Updates erhalten</button>
         </div>
-    </div>
+    </section>
+
+    <!-- Support Section -->
+    <section id="support" class="support-section">
+        <div class="cyber-form">
+            <h2>🔧 Support-Ticket</h2>
+            <form id="supportForm">
+                <input type="email" class="form-input" placeholder="Deine E-Mail" required>
+                <select class="form-input">
+                    <option>Technische Frage</option>
+                    <option>Bestellstatus</option>
+                    <option>Produktidee</option>
+                </select>
+                <textarea class="form-input" rows="5" placeholder="Beschreibe dein Anliegen..."></textarea>
+                <button type="submit" class="form-input">Absenden</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="cyber-form" style="margin:4rem auto">
+        <h2>📡 Kontakt</h2>
+        <p>24/7 Support unter:</p>
+        <a href="mailto:tobias.hustob@gmail.com" 
+           style="color: var(--neon-cyan); font-size:1.2em">
+           tobias.hustob@gmail.com
+        </a>
+        <p style="margin-top:1rem">⚡ Durchschnittliche Antwortzeit: < 12h</p>
+    </section>
 
     <script>
-        // ************** Firebase Setup **************
+        // Firebase Configuration
         const firebaseConfig = {
-            apiKey: "DEINE_API_KEY",
-            authDomain: "DEIN_PROJEKT.firebaseapp.com",
-            projectId: "DEIN_PROJEKT",
-            storageBucket: "DEIN_PROJEKT.appspot.com",
-            messagingSenderId: "DEINE_SENDER_ID",
-            appId: "DEINE_APP_ID"
+            apiKey: "AIzaSyAbzrfRUn2yJGhr1anUA5nkzm_m8Au6qn4",
+            authDomain: "hustob-bd2db.firebaseapp.com",
+            projectId: "hustob-bd2db",
+            storageBucket: "hustob-bd2db.firebasestorage.app",
+            messagingSenderId: "303640226345",
+            appId: "1:303640226345:web:fb5e6d41da439cfbce8a38",
+            measurementId: "G-7WDY8DEM1V"
         };
+
         firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
         const auth = firebase.auth();
 
-        // ************** Three.js Hintergrund **************
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ 
-            canvas: document.querySelector('#webgl-canvas'),
-            alpha: true
-        });
-
-        // Quantenpartikel-Effekt
-        const geometry = new THREE.BoxGeometry(0.2, 0.2, 0.2);
-        const material = new THREE.MeshBasicMaterial({ 
-            color: 0x00ffff,
-            wireframe: true
-        });
-
-        const particles = [];
-        for(let i = 0; i < 1000; i++) {
-            const particle = new THREE.Mesh(geometry, material);
-            particle.position.x = Math.random() * 10 - 5;
-            particle.position.y = Math.random() * 10 - 5;
-            particle.position.z = Math.random() * 10 - 5;
-            scene.add(particle);
-            particles.push(particle);
-        }
-
-        camera.position.z = 5;
-
-        // ************** Auth System **************
+        // Auth System
         function updateAuthUI(user) {
             const authDiv = document.getElementById('authState');
-            if (user) {
+            if(user) {
                 authDiv.innerHTML = `
-                    <div style="display: flex; gap: 1rem; align-items: center">
-                        <span style="color: var(--quantum-blue)">${user.email}</span>
-                        <button onclick="logout()" class="cyber-button">Abmelden</button>
-                    </div>
+                    <span style="color: var(--neon-cyan)">${user.email}</span>
+                    <button onclick="logout()" class="form-input">Abmelden</button>
                 `;
             } else {
                 authDiv.innerHTML = `
-                    <div style="display: flex; gap: 1rem">
-                        <button onclick="showAuthForm('login')" class="cyber-button">Anmelden</button>
-                        <button onclick="showAuthForm('signup')" class="cyber-button">Registrieren</button>
-                    </div>
+                    <button onclick="showAuth('login')" class="form-input">Anmelden</button>
+                    <button onclick="showAuth('signup')" class="form-input">Registrieren</button>
                 `;
             }
         }
 
-        async function login(email, password) {
-            try {
-                await auth.signInWithEmailAndPassword(email, password);
-            } catch (error) {
-                showError(error.message);
-            }
-        }
-
-        async function signup(email, password) {
-            try {
-                await auth.createUserWithEmailAndPassword(email, password);
-            } catch (error) {
-                showError(error.message);
-            }
-        }
-
-        async function logout() {
-            try {
-                await auth.signOut();
-            } catch (error) {
-                showError(error.message);
-            }
-        }
-
-        function showAuthForm(mode) {
-            Swal.fire({
-                title: mode === 'login' ? '🔐 Quantum Login' : '🚀 Neuron Signup',
+        async function showAuth(type) {
+            const { value: formData } = await Swal.fire({
+                title: type === 'login' ? '🔐 Anmeldung' : '🚀 Registrierung',
                 html: `
-                    <input type="email" id="email" class="swal2-input" placeholder="E-Mail">
-                    <input type="password" id="password" class="swal2-input" placeholder="Passwort">
+                    <input id="email" class="swal2-input" placeholder="E-Mail">
+                    <input id="password" type="password" class="swal2-input" placeholder="Passwort">
                 `,
                 focusConfirm: false,
-                confirmButtonText: mode === 'login' ? 'Anmelden' : 'Registrieren',
-                customClass: {
-                    confirmButton: 'cyber-button',
-                    popup: 'dark-popup'
-                },
-                background: '#0a0a15',
-                color: '#fff',
                 preConfirm: () => {
                     return {
                         email: document.getElementById('email').value,
                         password: document.getElementById('password').value
                     }
                 }
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    if (mode === 'login') {
-                        login(result.value.email, result.value.password);
-                    } else {
-                        signup(result.value.email, result.value.password);
-                    }
+            });
+
+            if(formData) {
+                if(type === 'login') {
+                    await auth.signInWithEmailAndPassword(formData.email, formData.password);
+                } else {
+                    await auth.createUserWithEmailAndPassword(formData.email, formData.password);
                 }
-            });
+            }
         }
 
-        // ************** Animation Loop **************
-        function animate() {
-            requestAnimationFrame(animate);
-            particles.forEach((particle, i) => {
-                particle.rotation.x += 0.01;
-                particle.rotation.y += 0.005;
-                particle.position.y += Math.sin(Date.now() * 0.001 + i) * 0.001;
-            });
-            renderer.render(scene, camera);
+        async function logout() {
+            await auth.signOut();
         }
-        animate();
 
-        // ************** Init **************
-        auth.onAuthStateChanged(user => updateAuthUI(user));
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
+        // Notification System
+        async function showNotify(product) {
+            const { value: email } = await Swal.fire({
+                title: '🔔 Produktbenachrichtigung',
+                input: 'email',
+                inputLabel: `Wir informieren dich bei Updates zu ${product}`,
+                inputPlaceholder: 'Deine E-Mail-Adresse'
+            });
+
+            if(email) {
+                await db.collection('notifications').add({
+                    product: product,
+                    email: email,
+                    timestamp: new Date()
+                });
+                Swal.fire('Erfolg!', 'Wir halten dich auf dem Laufenden', 'success');
+            }
+        }
+
+        // Form Handling
+        document.getElementById('supportForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            
+            await db.collection('supportTickets').add({
+                email: formData.get('email'),
+                category: formData.get('category'),
+                message: formData.get('message'),
+                status: 'offen',
+                timestamp: new Date()
+            });
+            
+            Swal.fire('Ticket erstellt', 'Wir melden uns innerhalb von 24h', 'success');
+            e.target.reset();
         });
+
+        // Init
+        auth.onAuthStateChanged(user => updateAuthUI(user));
     </script>
 </body>
 </html>
